@@ -1,10 +1,8 @@
 import { BASE_URL } from "../../constants/api.js";
 
-export async function fetchPosts(id) {
-  const url = `${BASE_URL}${id}`;
+export async function fetchBlogPosts() {
+  const url = BASE_URL; // Just use the BASE_URL directly
   const response = await fetch(url);
-
-  console.log(response);
 
   if (!response.ok) {
     throw new Error(response.statusText);
