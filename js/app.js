@@ -22,4 +22,7 @@ switch (pathname) {
   case "/index.html":
     displayBlogPosts();
     break;
+  case "/blogposts.html":
+    displayBlogPosts();
+    break;
 }
