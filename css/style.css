@@ -1,35 +1,61 @@
- /* Basic styling for the body */
- body {
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Reset default margins and paddings */
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Header styling */
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "karla", sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+}
+
+.top-container {
+    position: relative;
     width: 100%;
-    z-index: 1000;
 }
 
-/* Navbar styling */
+.top-image {
+    background-image: url('../images/backgroundimage_11zon.jpg'); /* Path to the image */
+    background-size: cover; /* Cover the entire element */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    height: 200px; /* Set a height for the top image */
+    width: 100%;
+}
+
+.top-heading {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the element */
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    font-family: 'montserrat', sans-serif;
+    font-weight: 600;
+}
+
+header {
+    width: 100%;
+    font-family: 'montserrat', sans-serif;
+    font-weight: 400;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #333; /* Navbar background color */
+    padding: 10px 20px;
+    width: 100%;
 }
 
-/* Logo styling */
-.navbar-logo a {
-    color: #fff;
-    font-size: 1.5rem;
-    text-decoration: none;
-}
-
-/* Navbar menu styling */
 .navbar-menu {
     list-style: none;
     display: flex;
@@ -38,44 +64,52 @@ header {
     padding: 0;
 }
 
-/* Navbar menu items styling */
-.navbar-menu li a {
-    color: #fff;
+.navbar-menu li {
+    display: inline;
+}
+
+.navbar-menu a {
+    color: white;
     text-decoration: none;
-    padding: 10px 15px;
-    transition: background 0.3s;
+    padding: 5px 10px;
 }
 
-.navbar-menu li a:hover {
-    background: #444;
-}
-
-/* Mobile menu button styling */
 .navbar-toggle {
-    display: none;
+    display: none; /* Hide mobile menu button by default */
     flex-direction: column;
     cursor: pointer;
 }
 
 .navbar-toggle .bar {
-    height: 3px;
     width: 25px;
-    background-color: #fff;
+    height: 3px;
+    background-color: white;
     margin: 4px 0;
-    transition: all 0.3s ease;
 }
 
-/* Responsive styles */
+/* ----- featured images - blogposts ----- */
+
+.featured-image {
+    box-sizing: border-box;
+    object-position: top;
+    object-fit: contain;
+    padding: 15px;
+    width: 100%;
+    height: 200px;
+}
+
+/* Mobile responsive styles */
 @media (max-width: 768px) {
     .navbar-menu {
-        display: none;
         flex-direction: column;
-        width: 100%;
+        display: none; /* Hide menu by default on mobile */
     }
 
     .navbar-menu.active {
-        display: flex;
+        display: flex; /* Show menu when active on mobile */
     }
 
     .navbar-toggle {
-        display: flex;
+        display: flex; /* Show mobile menu button */
+    }
+}

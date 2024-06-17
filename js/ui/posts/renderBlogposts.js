@@ -60,6 +60,7 @@ function createHtmlForPost(post) {
   if (featuredImageUrl) {
     const imageElement = document.createElement("img");
     imageElement.src = featuredImageUrl;
+    imageElement.classList.add("featured-image"); // Add class to the image element
     postItem.appendChild(imageElement);
   }
 
