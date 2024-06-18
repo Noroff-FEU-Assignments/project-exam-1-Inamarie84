@@ -4,13 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" />
     <title>Run The World | Runcations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900&display=swap" rel="stylesheet">
     <script src="/js/app.js" type="module"></script>
+    <script src="/js/ui/navbar/navbar.js" type="module"></script>
 </head>
 <body>
-    <h1>Run the world</h1>
+    <div class="top-container">
+        <div class="top-image"></div>
+        <h1 class="top-heading">Run the world</h1>
+    </div>
+    <header></header>
+    <h2 class="h2">Runcations</h2>
     <div id="message" class="message"></div>
-    <div id="posts-container"></div>
-    <button id="more-posts-button" class="more-posts-button" style="display: none;">More Posts</button>
+    <div id="posts-container" class="posts-container"></div>
+    <div id="loading-indicator" class="loading-indicator">Loading...</div>
+    <button id="more-posts-button" class="more-posts-button" style="display:none;">More Posts</button>
+    <button id="hide-posts-button" class="hide-posts-button" style="display:none;">Hide Posts</button>
+    <button id="back-to-top-button" class="back-to-top-button" style="display:none;">Back to Top</button>
 </body>
 </html>

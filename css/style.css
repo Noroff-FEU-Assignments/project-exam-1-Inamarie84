@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Reset default margins and paddings */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ----- global ----- */
+
+.loading-indicator {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    color: #333;
 }
 
 body {
@@ -14,6 +16,17 @@ body {
     font-weight: 200;
     font-size: 15px;
 }
+
+.h2 {
+    font-size: 40px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 25px;
+}
+
+/* ----- header ----- */
 
 .top-container {
     position: relative;
@@ -46,6 +59,8 @@ header {
     font-family: 'montserrat', sans-serif;
     font-weight: 400;
 }
+
+/* ----- nav ----- */
 
 .navbar {
     display: flex;
@@ -87,15 +102,87 @@ header {
     margin: 4px 0;
 }
 
+/* ----- blogposts ----- */
+
+.posts-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Three columns */
+    gap: 20px; /* Space between the grid items */
+    margin: 20px 30px;
+  }
+  
+  .post {
+    display: contents; /* Make each post a grid item */
+  }
+  
+  .post-text {
+    grid-column: 1;
+  }
+  
+  .post-image {
+    grid-column: 2;
+  }
+  
+
+/* ----- buttons -----*/
+
+.more-posts-button {
+    padding: 10px 20px;
+    margin: 10px auto 20px;
+    border: #333 solid 1px,;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+.more-posts-button:hover {
+    background-color: #DBD7D3;
+}
+
+.hide-posts-button {
+    display: none; 
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #333;
+    border: #333 solid 1px,;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto;
+}
+
+.hide-posts-button:hover {
+    background-color: #DBD7D3;
+}
+
+.back-to-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    display: none; 
+}
+
+.back-to-top-button:hover {
+    background-color: #0056b3;
+}
+
+
 /* ----- featured images - blogposts ----- */
 
 .featured-image {
     box-sizing: border-box;
     object-position: top;
     object-fit: contain;
-    padding: 15px;
-    width: 100%;
-    height: 200px;
+    padding: 40px;
+    width: 60%;
+    height: auto;
 }
 
 /* Mobile responsive styles */
