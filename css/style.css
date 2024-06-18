@@ -22,10 +22,6 @@ body {
     text-align: center;
 }
 
-h4 {
-    font-size: 25px;
-}
-
 /* ----- header ----- */
 
 .top-container {
@@ -105,16 +101,33 @@ header {
 /* ----- blogposts ----- */
 
 .posts-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* Three columns */
-    gap: 20px; /* Space between the grid items */
-    margin: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
   }
   
   .post {
-    display: contents; /* Make each post a grid item */
+    width: 100%;
+    max-width: 600px; /* Control the max width of each post */
+    margin-bottom: 25px; /* Space between posts */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+   .post h4 {
+    font-size: 25px;
+    text-align: center;
   }
   
+  .post .featured-image {
+    width: 100%;
+    height: auto;
+    margin: 20px 0; /* Space around the image */
+  }
+
   .post-text {
     grid-column: 1;
   }
@@ -141,14 +154,18 @@ header {
 }
 
 .hide-posts-button {
-    display: none; 
+    position: fixed;
+    bottom: 10px; 
+    left: 50%; /* Position it in the center */
+    transform: translateX(-50%); /* Center the button */
     padding: 10px 20px;
     background-color: #fff;
     color: #333;
     border: #333 solid 1px,;
     border-radius: 5px;
     cursor: pointer;
-    margin: 20px auto;
+    z-index: 1000;
+    display: none; /* Ensure it is initially hidden */
 }
 
 .hide-posts-button:hover {
@@ -173,17 +190,6 @@ header {
     background-color: #0056b3;
 }
 
-
-/* ----- featured images - blogposts ----- */
-
-.featured-image {
-    box-sizing: border-box;
-    object-position: top;
-    object-fit: contain;
-    padding: 40px;
-    width: 60%;
-    height: auto;
-}
 
 /* Mobile responsive styles */
 @media (max-width: 768px) {

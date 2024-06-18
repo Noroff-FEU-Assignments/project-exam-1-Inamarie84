@@ -1,3 +1,4 @@
+// JavaScript
 import { fetchPosts } from "../../api/posts/fetchBlogPosts.js";
 
 let currentPage = 1;
@@ -45,21 +46,13 @@ export async function renderBlogPosts(targetElement, posts = []) {
 function createHtmlForPost(post) {
   const { title, content, id, _embedded } = post;
 
-  const postText = document.createElement("div");
-  postText.classList.add("post-text");
+  const postContainer = document.createElement("div");
+  postContainer.classList.add("post");
 
   // Create and append the title
   const titleElement = document.createElement("h4");
   titleElement.innerText = title.rendered;
-  postText.appendChild(titleElement);
-
-  // Create and append the content
-  const contentElement = document.createElement("div");
-  contentElement.innerHTML = content.rendered;
-  postText.appendChild(contentElement);
-
-  const postImage = document.createElement("div");
-  postImage.classList.add("post-image");
+  postContainer.appendChild(titleElement);
 
   // Extract and append the featured image if available
   const featuredImageUrl = extractFeaturedImageUrl(_embedded);
@@ -67,14 +60,13 @@ function createHtmlForPost(post) {
     const imageElement = document.createElement("img");
     imageElement.src = featuredImageUrl;
     imageElement.classList.add("featured-image"); // Add class to the image element
-    postImage.appendChild(imageElement);
+    postContainer.appendChild(imageElement);
   }
 
-  // Container to hold the three columns
-  const postContainer = document.createElement("div");
-  postContainer.classList.add("post");
-  postContainer.appendChild(postText);
-  postContainer.appendChild(postImage);
+  // Create and append the content
+  const contentElement = document.createElement("div");
+  contentElement.innerHTML = content.rendered;
+  postContainer.appendChild(contentElement);
 
   return postContainer;
 }
