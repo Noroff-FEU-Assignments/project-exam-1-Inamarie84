@@ -1,4 +1,3 @@
-// Import fetchPosts function from fetchBlogPosts.js
 import { fetchPosts } from "../../api/posts/fetchBlogPosts.js";
 
 // Global variables
@@ -40,16 +39,18 @@ export async function renderBlogPosts(targetElement, posts = []) {
 
   // Display "More Posts" button if there are more posts to load
   const morePostsButton = document.getElementById("more-posts-button");
-  if (currentPage * perPage < totalPosts) {
-    morePostsButton.style.display = "block";
-  } else {
-    morePostsButton.style.display = "none";
+  if (morePostsButton) {
+    if (currentPage * perPage < totalPosts) {
+      morePostsButton.style.display = "block";
+    } else {
+      morePostsButton.style.display = "none";
+    }
   }
 }
 
 // Function to create HTML structure for a single post
 function createHtmlForPost(post) {
-  const { title, content, id, slug, _embedded } = post;
+  const { title, content, id, _embedded } = post;
 
   const postContainer = document.createElement("div");
   postContainer.classList.add("post");
@@ -75,7 +76,7 @@ function createHtmlForPost(post) {
 
   // Create a link/button to view the full post
   const readMoreLink = document.createElement("a");
-  readMoreLink.href = `blogpost.html?id=${id}`; // Adjust URL as per your route
+  readMoreLink.href = `singleblogpost.html?id=${id}`; // Adjust URL as per your route
   readMoreLink.textContent = "Read More";
   readMoreLink.classList.add("read-more-link"); // Add class for styling if needed
   postContainer.appendChild(readMoreLink);
@@ -97,109 +98,119 @@ function extractFeaturedImageUrl(embedded) {
 }
 
 // Event listener for "More Posts" button
-document
-  .getElementById("more-posts-button")
-  .addEventListener("click", async () => {
-    currentPage += 1;
+document.addEventListener("DOMContentLoaded", () => {
+  const morePostsButton = document.getElementById("more-posts-button");
+  if (morePostsButton) {
+    morePostsButton.addEventListener("click", async () => {
+      currentPage += 1;
 
-    // Show the loading indicator
-    const loadingIndicator = document.getElementById("loading-indicator");
-    loadingIndicator.style.display = "block";
+      // Show the loading indicator
+      const loadingIndicator = document.getElementById("loading-indicator");
+      if (loadingIndicator) loadingIndicator.style.display = "block";
 
-    try {
-      const morePosts = await fetchBlogPosts(currentPage, perPage);
+      try {
+        const morePosts = await fetchBlogPosts(currentPage, perPage);
+        const element = document.querySelector("#posts-container");
+
+        if (!morePosts.length) {
+          console.error("No more posts available");
+          return;
+        }
+
+        const postHtml = morePosts.map(createHtmlForPost);
+        postHtml.forEach((postElement) => {
+          additionalPosts.push(postElement);
+          element.appendChild(postElement);
+        });
+
+        // Show the "Hide Posts" button
+        const hidePostsButton = document.getElementById("hide-posts-button");
+        if (hidePostsButton) hidePostsButton.style.display = "block";
+
+        // Hide button if all pages are loaded
+        if (currentPage * perPage >= totalPosts) {
+          morePostsButton.style.display = "none";
+          // Show the "Back to Top" button when all posts are loaded
+          const backToTopButton = document.getElementById("back-to-top-button");
+          if (backToTopButton) backToTopButton.style.display = "block";
+        }
+      } catch (error) {
+        console.error("Error fetching more posts:", error);
+        // Handle error - you might want to display a message to the user
+      } finally {
+        // Hide the loading indicator
+        if (loadingIndicator) loadingIndicator.style.display = "none";
+      }
+    });
+  }
+
+  // Event listener for "Hide Posts" button
+  const hidePostsButton = document.getElementById("hide-posts-button");
+  if (hidePostsButton) {
+    hidePostsButton.addEventListener("click", () => {
       const element = document.querySelector("#posts-container");
 
-      if (!morePosts.length) {
-        console.error("No more posts available");
-        return;
-      }
-
-      const postHtml = morePosts.map(createHtmlForPost);
-      postHtml.forEach((postElement) => {
-        additionalPosts.push(postElement);
-        element.appendChild(postElement);
+      // Remove additional posts from the DOM
+      additionalPosts.forEach((postElement) => {
+        element.removeChild(postElement);
       });
 
-      // Show the "Hide Posts" button
-      document.getElementById("hide-posts-button").style.display = "block";
+      // Clear the additional posts array
+      additionalPosts = [];
 
-      // Hide button if all pages are loaded
-      if (currentPage * perPage >= totalPosts) {
-        document.getElementById("more-posts-button").style.display = "none";
-        // Show the "Back to Top" button when all posts are loaded
-        const backToTopButton = document.getElementById("back-to-top-button");
+      // Hide the "Hide Posts" button
+      hidePostsButton.style.display = "none";
+
+      // Show the "More Posts" button again
+      const morePostsButton = document.getElementById("more-posts-button");
+      if (morePostsButton) morePostsButton.style.display = "block";
+
+      // Reset currentPage to load the correct next page when "More Posts" is clicked again
+      currentPage -= 1;
+    });
+  }
+
+  // Event listener for "Back to Top" button
+  const backToTopButton = document.getElementById("back-to-top-button");
+  if (backToTopButton) {
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  // Show "Back to Top" button when scrolling to the bottom
+  window.addEventListener("scroll", () => {
+    if (backToTopButton) {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         backToTopButton.style.display = "block";
       }
-    } catch (error) {
-      console.error("Error fetching more posts:", error);
-      // Handle error - you might want to display a message to the user
-    } finally {
-      // Hide the loading indicator
-      loadingIndicator.style.display = "none";
     }
   });
 
-// Event listener for "Hide Posts" button
-document.getElementById("hide-posts-button").addEventListener("click", () => {
-  const element = document.querySelector("#posts-container");
-
-  // Remove additional posts from the DOM
-  additionalPosts.forEach((postElement) => {
-    element.removeChild(postElement);
-  });
-
-  // Clear the additional posts array
-  additionalPosts = [];
-
-  // Hide the "Hide Posts" button
-  const hidePostsButton = document.getElementById("hide-posts-button");
-  hidePostsButton.style.display = "none";
-
-  // Show the "More Posts" button again
-  const morePostsButton = document.getElementById("more-posts-button");
-  morePostsButton.style.display = "block";
-
-  // Reset currentPage to load the correct next page when "More Posts" is clicked again
-  currentPage -= 1;
-});
-
-// Event listener for "Back to Top" button
-document.getElementById("back-to-top-button").addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-});
-
-// Show "Back to Top" button when scrolling to the bottom
-window.addEventListener("scroll", () => {
-  const backToTopButton = document.getElementById("back-to-top-button");
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    backToTopButton.style.display = "block";
-  }
-});
-
-// Initial render
-document.addEventListener("DOMContentLoaded", async () => {
-  // Show the loading indicator
+  // Initial render
   const loadingIndicator = document.getElementById("loading-indicator");
-  loadingIndicator.style.display = "block";
+  if (loadingIndicator) loadingIndicator.style.display = "block";
 
-  try {
-    const initialPosts = await fetchBlogPosts(1, perPage);
-    renderBlogPosts("#posts-container", initialPosts);
-  } catch (error) {
-    console.error("Failed to load initial posts:", error);
-    // Handle error - you might want to display a message to the user
-  } finally {
-    // Hide the loading indicator and show the more-posts button
-    loadingIndicator.style.display = "none";
+  fetchBlogPosts(1, perPage)
+    .then((initialPosts) => {
+      renderBlogPosts("#posts-container", initialPosts);
+    })
+    .catch((error) => {
+      console.error("Failed to load initial posts:", error);
+      // Handle error - you might want to display a message to the user
+    })
+    .finally(() => {
+      // Hide the loading indicator and show the more-posts button
+      if (loadingIndicator) loadingIndicator.style.display = "none";
 
-    // Display the "More Posts" button if there are more posts to load
-    const morePostsButton = document.getElementById("more-posts-button");
-    if (currentPage * perPage < totalPosts) {
-      morePostsButton.style.display = "block";
-    }
-  }
+      const morePostsButton = document.getElementById("more-posts-button");
+      if (morePostsButton) {
+        if (currentPage * perPage < totalPosts) {
+          morePostsButton.style.display = "block";
+        }
+      }
+    });
 });
