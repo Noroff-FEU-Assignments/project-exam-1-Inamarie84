@@ -1,16 +1,21 @@
-// import { BASE_URL } from "../../constants/api.js";
+import { BASE_URL } from "../../constants/api.js";
 
-// // fetchBlogposts.js
-// export async function fetchSingleBlogPost(id) {
-//   const url = `${BASE_URL}${id}`;
-//   const response = await fetch(url);
+export async function fetchSinglePost(id) {
+  const url = `${BASE_URL}/posts/${id}`; // Assuming /posts/ is the endpoint for individual blog posts
 
-//   console.log(response);
+  try {
+    const response = await fetch(url);
 
-//   if (!response.ok) {
-//     throw new Error(response.statusText);
-//   }
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch single blog post. Status: ${response.statusText}`
+      );
+    }
 
-//   const json = await response.json();
-//   return json;
-// }
+    const json = await response.json();
+    return json;
+  } catch (error) {
+    console.error("Error fetching single blog post:", error);
+    throw error; // Rethrow the error to be caught in the calling function
+  }
+}
