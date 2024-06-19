@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="/js/app.js" type="module"></script>
     <script src="/js/ui/navbar/navbar.js" type="module"></script>
+    <!-- <script src="/js/ui/posts/renderLatestPosts.js" type="module"></script> -->
 </head>
 <body>
     <div class="top-container">
@@ -20,8 +21,16 @@
     </div>
     <header></header>
     <div id="message" class="message"></div>
-    <div id="posts-container"></div>
     <div id="loading-indicator" class="loading-indicator">Loading...</div>
-    <button id="more-posts-button" class="more-posts-button" style="display:none;">More Posts</button>
+    <section id="latest-posts">
+        <h2>Latest Posts</h2>
+        <div class="carousel-container">
+            <button class="carousel-arrow left-arrow">&lt;</button>
+            <div class="carousel">
+                <div class="carousel-track"></div>
+            </div>
+            <button class="carousel-arrow right-arrow">&gt;</button>
+        </div>
+    </section>
 </body>
 </html>

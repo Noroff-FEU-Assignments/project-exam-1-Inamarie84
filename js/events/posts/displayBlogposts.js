@@ -1,7 +1,7 @@
 // displayBlogposts.js
 import { fetchPosts } from "../../api/posts/fetchBlogposts.js";
 import { displayMessage } from "../../ui/common/displayMessage.js";
-import { renderBlogPosts } from "../../ui/posts/renderBlogposts.js";
+import { renderBlogPosts } from "../../ui/posts/renderBlogPosts.js";
 
 export async function displayBlogPosts() {
   console.log("displayBlogPosts");

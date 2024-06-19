@@ -98,7 +98,55 @@ header {
     margin: 4px 0;
 }
 
-/* ----- blogposts ----- */
+/* ----- home page - carousel section ----- */
+
+/* Latest Posts Section */
+/* styles.css */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .carousel-post {
+    flex: 0 0 25%; /* Adjust as needed to display four posts at a time */
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  
+  .carousel-arrow {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+  
+  .left-arrow {
+    left: 0;
+  }
+  
+  .right-arrow {
+    right: 0;
+  }
+  
+  
+
+  /* ----- blogposts ----- */
 
 .posts-container {
     display: flex;
@@ -109,7 +157,7 @@ header {
   
   .post {
     width: 100%;
-    max-width: 600px; /* Control the max width of each post */
+    max-width: 800px; /* Control the max width of each post */
     margin-bottom: 25px; /* Space between posts */
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -205,4 +253,13 @@ header {
     .navbar-toggle {
         display: flex; /* Show mobile menu button */
     }
+
+    /* .carousel-post {
+        min-width: 100%; 
+      }
+    
+      .carousel-arrow {
+        font-size: 1.5em;
+      } */
 }
+
