@@ -1,5 +1,5 @@
 import { displayBlogPosts } from "./events/posts/displayBlogPosts.js";
-import { displayCarousel } from "./events/posts/displayLatestPosts.js";
+// import { displayCarousel } from "./events/posts/displayLatestPosts.js";
 
 const { pathname } = location;
 
