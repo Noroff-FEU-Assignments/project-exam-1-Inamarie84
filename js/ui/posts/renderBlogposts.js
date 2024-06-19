@@ -1,36 +1,40 @@
-// JavaScript
+// Import fetchPosts function from fetchBlogPosts.js
 import { fetchPosts } from "../../api/posts/fetchBlogPosts.js";
 
+// Global variables
 let currentPage = 1;
 let totalPosts = 0;
 let perPage = 10;
 let additionalPosts = []; // To keep track of additional posts
 
+// Function to fetch blog posts from the API
 async function fetchBlogPosts(page, perPage) {
   try {
     const { data, totalPosts: total } = await fetchPosts(page, perPage);
     console.log("Fetched posts:", data);
     totalPosts = total; // Update totalPosts
-    return data; // Return data
+    return data; // Return fetched posts
   } catch (error) {
     console.error("Error fetching posts:", error);
     throw error; // Rethrow the error to be caught in the calling function
   }
 }
 
+// Function to render blog posts to the DOM
 export async function renderBlogPosts(targetElement, posts = []) {
   const element = document.querySelector(targetElement);
   if (!element) {
     console.error(`Element with selector ${targetElement} not found`);
     return;
   }
-  element.innerHTML = "";
+  element.innerHTML = ""; // Clear previous posts
 
   if (!posts.length) {
     console.error("No posts available to render");
     return;
   }
 
+  // Create HTML for each post and append to the container
   const postHtml = posts.map(createHtmlForPost);
   element.append(...postHtml);
 
@@ -43,8 +47,9 @@ export async function renderBlogPosts(targetElement, posts = []) {
   }
 }
 
+// Function to create HTML structure for a single post
 function createHtmlForPost(post) {
-  const { title, content, id, _embedded } = post;
+  const { title, content, id, slug, _embedded } = post;
 
   const postContainer = document.createElement("div");
   postContainer.classList.add("post");
@@ -68,9 +73,17 @@ function createHtmlForPost(post) {
   contentElement.innerHTML = content.rendered;
   postContainer.appendChild(contentElement);
 
+  // Create a link/button to view the full post
+  const readMoreLink = document.createElement("a");
+  readMoreLink.href = `blogpost.html?id=${id}`; // Adjust URL as per your route
+  readMoreLink.textContent = "Read More";
+  readMoreLink.classList.add("read-more-link"); // Add class for styling if needed
+  postContainer.appendChild(readMoreLink);
+
   return postContainer;
 }
 
+// Function to extract featured image URL from _embedded object
 function extractFeaturedImageUrl(embedded) {
   if (
     embedded &&
@@ -83,6 +96,7 @@ function extractFeaturedImageUrl(embedded) {
   return null;
 }
 
+// Event listener for "More Posts" button
 document
   .getElementById("more-posts-button")
   .addEventListener("click", async () => {
@@ -119,6 +133,7 @@ document
       }
     } catch (error) {
       console.error("Error fetching more posts:", error);
+      // Handle error - you might want to display a message to the user
     } finally {
       // Hide the loading indicator
       loadingIndicator.style.display = "none";
@@ -176,6 +191,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderBlogPosts("#posts-container", initialPosts);
   } catch (error) {
     console.error("Failed to load initial posts:", error);
+    // Handle error - you might want to display a message to the user
   } finally {
     // Hide the loading indicator and show the more-posts button
     loadingIndicator.style.display = "none";
