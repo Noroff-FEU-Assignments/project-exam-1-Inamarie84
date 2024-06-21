@@ -1,21 +1,17 @@
-import { BASE_URL } from "../../constants/api.js";
-
-export async function fetchSinglePost(id) {
-  const url = `${BASE_URL}/posts/${id}`; // Assuming /posts/ is the endpoint for individual blog posts
-
+// fetchSingleBlogPost.js
+export async function fetchSinglePost(postId) {
   try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch single blog post. Status: ${response.statusText}`
-      );
+    const response = await fetch(
+      `https://inaforseth.no/wp/wp-json/wp/v2/posts/${postId}`
+    );
+    const data = await response.json();
+    // Assuming data is an array, return the first item
+    if (Array.isArray(data)) {
+      return data[0];
     }
-
-    const json = await response.json();
-    return json;
+    return data;
   } catch (error) {
-    console.error("Error fetching single blog post:", error);
-    throw error; // Rethrow the error to be caught in the calling function
+    console.error("Failed to fetch the single post:", error);
+    throw error;
   }
 }

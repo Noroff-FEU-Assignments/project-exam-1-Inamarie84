@@ -9,6 +9,15 @@ export function renderSingleBlogPost(targetElement, post) {
   // Clear previous content
   element.innerHTML = "";
 
+  // Log post object for debugging
+  console.log("Post object:", post);
+
+  // Check if post has the required properties
+  if (!post || !post.title || !post.content) {
+    console.error("Post data is missing required properties");
+    return;
+  }
+
   // Destructure the post object
   const { title, content, _embedded } = post;
 
