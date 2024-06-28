@@ -113,7 +113,7 @@ header {
     padding: 20px;
   }
   
-  .post {
+  .post, .singlepost-container {
     width: 100%;
     max-width: 800px; /* Control the max width of each post */
     margin-bottom: 25px; /* Space between posts */
@@ -134,18 +134,65 @@ header {
     margin: 20px 0; /* Space around the image */
   }
 
+  .singlepost-container img {
+    width: 100%;
+    height: auto;
+    margin: 20px 0; /* Space around the image */
+  }
+
   .post-text {
     grid-column: 1;
   }
   
-  .post-image {
+  /* .post-image {
     grid-column: 2;
+  } */
+  
+  .singlepost-container {
+    margin: auto;
+  }
+
+  figure {
+
+  }
+
+/* ----- contact ----- */
+
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
   }
   
 
 /* ----- buttons -----*/
 
-.more-posts-button {
+.more-posts-button, .custom-back-button, .submit-button {
     padding: 10px 20px;
     margin: 10px auto 20px;
     border: #333 solid 1px,;
@@ -155,7 +202,11 @@ header {
     cursor: pointer;
 }
 
-.more-posts-button:hover {
+
+.more-posts-button:hover,
+.custom-back-button:hover,
+.submit-button:hover 
+{
     background-color: #DBD7D3;
 }
 

@@ -8,7 +8,7 @@ console.log("Current pathname:", pathname); // Log the pathname for debugging
 switch (pathname) {
   case "/":
   case "/index.html":
-    // Add the function to be called on the home page
+    // Add the function to be called on the home page if needed
     break;
   case "/blogposts.html":
     displayBlogPosts();
