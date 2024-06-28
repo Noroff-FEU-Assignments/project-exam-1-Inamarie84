@@ -1,4 +1,3 @@
-// renderSingleBlogPost.js
 export function renderSingleBlogPost(targetElement, post) {
   const element = document.querySelector(targetElement);
   if (!element) {
@@ -39,6 +38,19 @@ export function renderSingleBlogPost(targetElement, post) {
   const contentElement = document.createElement("div");
   contentElement.innerHTML = content.rendered;
   element.appendChild(contentElement);
+
+  // Create and append the back button
+  const backButtonContainer = document.createElement("div");
+  backButtonContainer.id = "back-button-container";
+  const backButton = document.createElement("button");
+  backButton.id = "back-button";
+  backButton.innerText = "Back";
+  backButton.classList.add("custom-back-button"); // Add a class to the button
+  backButton.addEventListener("click", () => {
+    window.history.back();
+  });
+  backButtonContainer.appendChild(backButton);
+  element.appendChild(backButtonContainer);
 }
 
 // Function to extract featured image URL from _embedded object
