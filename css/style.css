@@ -189,6 +189,45 @@ header {
     font-size: 14px;
     margin-top: 5px;
   }
+
+
+/* ----- about -----*/
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Individual sections styling */
+.container-one, .container-two, .container-three {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Specific section styling */
+.container-one {
+  background-color: #f9f9f9;
+}
+
+.container-two {
+  background-color: #e9e9e9;
+}
+
+.container-three {
+  background-color: #d9d9d9;
+}
+
+/* Image styling */
+.about-images img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
   
 
 /* ----- buttons -----*/

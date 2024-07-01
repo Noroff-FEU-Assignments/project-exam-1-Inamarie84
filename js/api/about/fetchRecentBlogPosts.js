@@ -37,5 +37,37 @@ function displayTitles(titles) {
   container.appendChild(list);
 }
 
-// Call the function to fetch and display post titles
-fetchPostTitles();
+// Function to add images to the about-images section
+function addImages() {
+  const aboutImagesSection = document.querySelector(".about-images");
+
+  if (!aboutImagesSection) {
+    console.error("about-images section not found");
+    return;
+  }
+
+  const images = [
+    {
+      src: "images/femalerunnerhill_11zon.jpg",
+      alt: "female runner on a hill looking into the horizon",
+    },
+    {
+      src: "images/planning.jpg",
+      alt: "map, camera and passport - person planning a trip",
+    },
+    { src: "images/runnerstairs_11zon.jpg", alt: "person running up stairs" },
+  ];
+
+  images.forEach((image) => {
+    const imgElement = document.createElement("img");
+    imgElement.src = image.src;
+    imgElement.alt = image.alt;
+    aboutImagesSection.appendChild(imgElement);
+  });
+}
+
+// Call the functions to fetch and display post titles and add images
+document.addEventListener("DOMContentLoaded", () => {
+  fetchPostTitles();
+  addImages();
+});
