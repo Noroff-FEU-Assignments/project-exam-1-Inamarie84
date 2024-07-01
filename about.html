@@ -4,9 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Run The World | About</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Run The World | About </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="/js/api/about/fetchRecentBlogPosts.js" type="module" defer></script>
+    <script src="/js/ui/navbar/navbar.js" type="module" defer></script>
 </head>
 <body>
+    <div class="top-container">
+        <div class="top-image"></div>
+        <h1 class="top-heading">Run the world</h1>
+    </div>
+    <header></header>
+    <section class="container">
+    <h2>About</h2>
+    <div class="section-one">
+        <p>My name is Ina, and I am a runner. My favourite thing to do when I travel and go to new places, is sightseeing with running shoes on my feet and a camera in my pocket. 
+        I have travelled to many places and gathered information on routes, landmarks, things to see, culture and general tips for a good runcation! </p>            
+    </div>
+    <div class="section-two">
+        <h3>
+            Follow me on SoMe for inspiration:
+        </h3>
+        <p>
+            Facebook: @runtheworld
+            Instagram: @runtheworld
+            Twitter: @runtheworld
+            Tik Tok: @runtheworld
+        </p>
+    </div>
+    <div class="section-three">
+        <h4>Subscribe to blog via e-mail</h4>
+        <p>Enter your e-mail address to subscribe to this blog and receive notifications of new posts by e-mail.</p>
+        <form id="contactForm">
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" id="email" name="email">
+            <div id="emailError" class="error"></div>
+          </div>
+          <button type="submit" class="submit-button">Submit</button>
+    </div>
+</form>
+</section>
+<section>
+    <div class="about-container"></div>
+</section>   
     
 </body>
 </html>
