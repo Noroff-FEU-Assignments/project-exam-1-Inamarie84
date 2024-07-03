@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/eb56cff7a8.js" crossorigin="anonymous"></script>
-    <script src="/js/api/about/fetchRecentBlogPosts.js" type="module" defer></script>
+    <script src="/js/app.js" type="module" defer></script>
     <script src="/js/ui/navbar/navbar.js" type="module" defer></script>
 </head>
 <body>
@@ -29,19 +29,17 @@
                 I have travelled to many places and gathered information on routes, landmarks, things to see, culture and general tips for a good runcation! </p>            
             </div>
             <div class="p-two">
-                <h3>
-                    Follow me on SoMe for inspiration:
-                </h3>
-                <p>
-                    <i class="fa-brands fa-facebook">Facebook: @runtheworld</i>
-                    <i class="fa-brands fa-facebook-messenger">Messenger: @runtheworld</i>
-                    <i class="fa-brands fa-instagram">Instagram: @runtheworld</i>
-                    <i class="fa-brands fa-x-twitter">X: @runtheworld</i>
-                    <i class="fa-brands fa-tiktok">Tik Tok: @runtheworld</i>
-                </p>
+                <h3 class="about-header">Follow me on SoMe for inspiration:</h3>
+                <ul class="social-media-list">
+                    <li><i class="fa-brands fa-facebook"></i> Facebook: @runtheworld</li>
+                    <li><i class="fa-brands fa-facebook-messenger"></i> Messenger: @runtheworld</li>
+                    <li><i class="fa-brands fa-instagram"></i> Instagram: @runtheworld</li>
+                    <li><i class="fa-brands fa-x-twitter"></i> X: @runtheworld</li>
+                    <li><i class="fa-brands fa-tiktok"></i> Tik Tok: @runtheworld</li>
+                </ul>
             </div>
             <div class="p-three">
-                <h4>Subscribe to blog via e-mail</h4>
+                <h4>Subscribe to my blog via e-mail</h4>
                 <p>Enter your e-mail address to subscribe to this blog and receive notifications of new posts by e-mail.</p>
                 <form id="contactForm">
                     <div class="form-group">
@@ -57,7 +55,6 @@
             <h2>Recent Runcations</h2>
             <div class="about-container"></div>
         </section>
-        
     </div>
 </body>
 </html>

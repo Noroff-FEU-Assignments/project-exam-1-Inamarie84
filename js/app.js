@@ -1,5 +1,6 @@
 import { displayBlogPosts } from "./events/posts/displayBlogPosts.js";
 import { displaySingleBlogPost } from "./events/posts/displaySingleBlogPost.js";
+import { initializeAboutPage } from "./events/posts/displayAboutPage.js";
 
 const { pathname } = location;
 
@@ -9,6 +10,9 @@ switch (pathname) {
   case "/":
   case "/index.html":
     // Add the function to be called on the home page if needed
+    break;
+  case "/about.html": // Assuming the about page is about.html
+    initializeAboutPage();
     break;
   case "/blogposts.html":
     displayBlogPosts();
