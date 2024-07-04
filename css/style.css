@@ -104,10 +104,83 @@ header {
 
 /* ----- home page - carousel section ----- */
 
+.carousel-heading {
+  margin: 30px auto; /* Add space between the heading and the carousel */
+  text-align: center;
+  justify-items: center;
+  font-size: 50px; /* Adjust font size */
+  color: #333; /* Adjust text color */
+}
+
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the carousel */
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.carousel {
+  overflow: hidden;
+  width: 80%;
+  margin: 40px auto; /* Center the carousel within the container */
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px; /* Equal space between items */
+  transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item {
+  flex: 1;
+  min-width: 25%; /* Show 4 items at a time */
+  box-sizing: border-box;
+  text-align: center;
+  padding: 10px; /* Adjust padding as needed */
+}
+
+.carousel-item img {
+  width: 200px; /* Fixed width */
+  height: 200px; /* Fixed height */
+  object-fit: cover; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+
+.carousel-item h3 {
+  margin-top: 10px; /* Space between image and title */
+  font-size: 16px; /* Adjust as needed */
+  line-height: 1.4;
+}
+
+.carousel-arrow {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
+}
 
   
-  
-
   /* ----- blogposts ----- */
 
 .posts-container {
@@ -153,7 +226,14 @@ header {
   }
 
 /* ----- singleblogposts ----- */
-/* modal*/
+
+figure {
+  display: grid;
+  grid-template-columns: 1fr;
+  box-sizing: border-box;
+  padding: 30px;
+
+}
 
 /* The Modal (background) */
 .modal {
