@@ -19,6 +19,10 @@ export async function displaySingleBlogPost() {
   try {
     const post = await fetchSinglePost(postId);
     console.log("Fetched single post:", post);
+
+    // Update the page title
+    document.title = `Run The World | ${post.title.rendered}`;
+
     renderSingleBlogPost("#singlepost-container", post);
   } catch (error) {
     console.error("Failed to load single post:", error);
