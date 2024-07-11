@@ -9,6 +9,15 @@
     color: #333;
 }
 
+#loading-indicator {
+  display: block; /* Initially display loading indicator */
+}
+
+.loaded #loading-indicator {
+  display: none; /* Hide loading indicator when content is loaded */
+}
+
+
 body {
     margin: 0;
     padding: 0;

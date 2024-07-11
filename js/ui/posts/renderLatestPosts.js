@@ -24,6 +24,10 @@ export function renderLatestPosts(posts) {
   });
 
   updateArrows();
+
+  // Remove loading indicator after content is loaded
+  const loadingIndicator = document.getElementById("loading-indicator");
+  loadingIndicator.parentElement.classList.add("loaded");
 }
 
 function updateArrows() {
