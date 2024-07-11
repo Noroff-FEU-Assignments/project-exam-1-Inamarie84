@@ -112,6 +112,12 @@ header {
   color: #333; /* Adjust text color */
 }
 
+.carousel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
 .carousel-container {
   display: flex;
@@ -179,6 +185,7 @@ header {
 .right-arrow {
   right: 0;
 }
+
 
   
   /* ----- blogposts ----- */
@@ -438,6 +445,13 @@ header {
 }
 
 
+/* Responsive styles for tablet (iPad) */
+@media (max-width: 1024px) {
+  .carousel-item {
+    min-width: 33.33%; /* Show 3 items at a time */
+  }
+}
+
 /* Mobile responsive styles */
 @media (max-width: 768px) {
     .navbar-menu {
@@ -452,5 +466,32 @@ header {
     .navbar-toggle {
         display: flex; /* Show mobile menu button */
     }
+
+    /* carousel */
+
+    .carousel-item {
+      min-width: 50%; /* Show 2 items at a time */
+    }
+
+    .carousel-item img {
+      width: 150px; /* Adjust width for smaller screens */
+      height: 150px; /* Adjust height for smaller screens */
+    }
+}
+
+/* Responsive styles for small mobile devices */
+@media (max-width: 480px) {
+  .carousel-item {
+    min-width: 100%; /* Show 1 item at a time */
+  }
+
+  .carousel-item img {
+    width: 120px; /* Adjust width for smaller screens */
+    height: 120px; /* Adjust height for smaller screens */
+  }
+
+  .carousel-item h3 {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
 }
 

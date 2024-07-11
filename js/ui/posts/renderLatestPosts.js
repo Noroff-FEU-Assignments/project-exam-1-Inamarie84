@@ -1,10 +1,7 @@
 export function renderLatestPosts(posts) {
   const carouselTrack = document.querySelector(".carousel-track");
-  if (!carouselTrack) {
-    console.error("Carousel track element not found");
-    return;
-  }
 
+  // Clear previous content
   carouselTrack.innerHTML = "";
 
   posts.forEach((post) => {
@@ -18,9 +15,9 @@ export function renderLatestPosts(posts) {
         : "default-image-url.jpg";
 
     postElement.innerHTML = `
-        <img src="${imageUrl}" alt="${post.title.rendered}">
-        <h3>${post.title.rendered}</h3>
-      `;
+      <img src="${imageUrl}" alt="${post.title.rendered}">
+      <h3>${post.title.rendered}</h3>
+    `;
 
     carouselTrack.appendChild(postElement);
   });
@@ -31,16 +28,19 @@ export function renderLatestPosts(posts) {
 function updateArrows() {
   const leftArrow = document.querySelector(".left-arrow");
   const rightArrow = document.querySelector(".right-arrow");
-  const carouselTrack = document.querySelector(".carousel-track");
+  const currentPage = parseInt(
+    document.querySelector(".carousel-track").dataset.currentPage,
+    10
+  );
+  const totalPages = parseInt(
+    document.querySelector(".carousel-track").dataset.totalPages,
+    10
+  );
 
-  if (!leftArrow || !rightArrow || !carouselTrack) {
+  if (leftArrow && rightArrow) {
+    leftArrow.disabled = currentPage === 1;
+    rightArrow.disabled = currentPage >= totalPages;
+  } else {
     console.error("Arrow or carousel track element not found");
-    return;
   }
-
-  const currentPage = parseInt(carouselTrack.dataset.currentPage, 10) || 1;
-  const totalPages = parseInt(carouselTrack.dataset.totalPages, 10) || 1;
-
-  leftArrow.disabled = currentPage === 1;
-  rightArrow.disabled = currentPage >= totalPages;
 }
