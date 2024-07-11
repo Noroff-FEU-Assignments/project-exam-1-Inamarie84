@@ -8,8 +8,7 @@ export async function fetchLatestPosts(page = 1, perPage = 4) {
   if (!response.ok) {
     throw new Error("Failed to fetch latest posts");
   }
-
   const data = await response.json();
-  const totalPosts = parseInt(response.headers.get("X-WP-Total"), 10);
+  const totalPosts = parseInt(response.headers.get("X-WP-Total"), 10); // Parse as integer
   return { data, totalPosts };
 }

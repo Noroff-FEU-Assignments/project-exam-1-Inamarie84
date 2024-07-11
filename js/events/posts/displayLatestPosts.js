@@ -5,30 +5,21 @@ let currentPage = 1;
 const postsPerPage = 4;
 let totalPosts = 0;
 
-export async function displayLatestPosts() {
+export async function displayLatestPosts(page = 1) {
   const loadingIndicator = document.getElementById("loading-indicator");
-  if (!loadingIndicator) {
-    console.error("Loading indicator element not found");
-    return;
-  }
-
   loadingIndicator.style.display = "block";
 
   try {
     const { data, totalPosts: fetchedTotalPosts } = await fetchLatestPosts(
-      currentPage,
+      page,
       postsPerPage
     );
     totalPosts = fetchedTotalPosts;
     const totalPages = Math.ceil(totalPosts / postsPerPage);
 
+    // Update the data attributes for arrows
     const carouselTrack = document.querySelector(".carousel-track");
-    if (!carouselTrack) {
-      console.error("Carousel track element not found");
-      return;
-    }
-
-    carouselTrack.dataset.currentPage = currentPage;
+    carouselTrack.dataset.currentPage = page;
     carouselTrack.dataset.totalPages = totalPages;
 
     renderLatestPosts(data);
@@ -39,16 +30,18 @@ export async function displayLatestPosts() {
   }
 }
 
-document.querySelector(".left-arrow").addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
-    displayLatestPosts();
-  }
-});
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".left-arrow").addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      displayLatestPosts(currentPage);
+    }
+  });
 
-document.querySelector(".right-arrow").addEventListener("click", () => {
-  if (currentPage < Math.ceil(totalPosts / postsPerPage)) {
-    currentPage++;
-    displayLatestPosts();
-  }
+  document.querySelector(".right-arrow").addEventListener("click", () => {
+    if (currentPage < Math.ceil(totalPosts / postsPerPage)) {
+      currentPage++;
+      displayLatestPosts(currentPage);
+    }
+  });
 });
