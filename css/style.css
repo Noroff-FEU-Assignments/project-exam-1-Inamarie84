@@ -130,7 +130,7 @@ header {
 
 .carousel-track {
   display: flex;
-  gap: 20px; /* Equal space between items */
+  gap: 10px; /* Equal space between items */
   transition: transform 0.3s ease-in-out;
 }
 
@@ -227,13 +227,12 @@ header {
 
 /* ----- singleblogposts ----- */
 
-figure {
+/* .wp-block-image{
   display: grid;
   grid-template-columns: 1fr;
   box-sizing: border-box;
   padding: 30px;
-
-}
+} */
 
 /* The Modal (background) */
 .modal {
