@@ -1,13 +1,20 @@
 import { fetchLatestPosts } from "../../api/posts/fetchLatestPosts.js";
 import { renderLatestPosts } from "../../ui/posts/renderLatestPosts.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+  const carouselContainer = document.querySelector(".carousel-container");
+  if (carouselContainer) {
+    displayLatestPosts();
+  }
+});
+
 let currentPage = 1;
 const postsPerPage = 4;
 let totalPosts = 0;
 
 export async function displayLatestPosts(page = 1) {
   const loadingIndicator = document.getElementById("loading-indicator");
-  loadingIndicator.style.display = "block";
+  if (loadingIndicator) loadingIndicator.style.display = "block";
 
   try {
     const { data, totalPosts: fetchedTotalPosts } = await fetchLatestPosts(
@@ -19,29 +26,31 @@ export async function displayLatestPosts(page = 1) {
 
     // Update the data attributes for arrows
     const carouselTrack = document.querySelector(".carousel-track");
-    carouselTrack.dataset.currentPage = page;
-    carouselTrack.dataset.totalPages = totalPages;
+    if (carouselTrack) {
+      carouselTrack.dataset.currentPage = page;
+      carouselTrack.dataset.totalPages = totalPages;
+    }
 
     renderLatestPosts(data);
+    currentPage = page; // Update current page after rendering
   } catch (error) {
     console.error("Failed to fetch posts:", error);
   } finally {
-    loadingIndicator.style.display = "none";
+    if (loadingIndicator) loadingIndicator.style.display = "none";
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".left-arrow").addEventListener("click", () => {
+// Event listeners for navigation arrows
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("left-arrow")) {
     if (currentPage > 1) {
-      currentPage--;
-      displayLatestPosts(currentPage);
+      displayLatestPosts(currentPage - 1);
     }
-  });
+  }
 
-  document.querySelector(".right-arrow").addEventListener("click", () => {
+  if (event.target.classList.contains("right-arrow")) {
     if (currentPage < Math.ceil(totalPosts / postsPerPage)) {
-      currentPage++;
-      displayLatestPosts(currentPage);
+      displayLatestPosts(currentPage + 1);
     }
-  });
+  }
 });

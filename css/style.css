@@ -104,11 +104,11 @@ header {
 
 /* ----- home page - carousel section ----- */
 
-.carousel-heading {
+.carousel-header {
   margin: 30px auto; /* Add space between the heading and the carousel */
   text-align: center;
   justify-items: center;
-  font-size: 50px; /* Adjust font size */
+  font-size: 40px; /* Adjust font size */
   color: #333; /* Adjust text color */
 }
 
