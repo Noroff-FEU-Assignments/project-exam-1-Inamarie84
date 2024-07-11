@@ -132,10 +132,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     morePostsButton.addEventListener("click", async () => {
       currentPage += 1;
 
-      // Show the loading indicator
-      const loadingIndicator = document.getElementById("loading-indicator");
-      if (loadingIndicator) loadingIndicator.style.display = "block";
-
       try {
         const morePosts = await fetchBlogPosts(currentPage, perPage);
         const element = document.querySelector("#posts-container");
@@ -162,9 +158,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       } catch (error) {
         console.error("Error fetching more posts:", error);
-      } finally {
-        // Hide the loading indicator
-        if (loadingIndicator) loadingIndicator.style.display = "none";
       }
     });
   }
@@ -213,9 +206,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Initial render
-  const loadingIndicator = document.getElementById("loading-indicator");
-  if (loadingIndicator) loadingIndicator.style.display = "block";
-
   fetchBlogPosts(1, perPage)
     .then((initialPosts) => {
       renderBlogPosts("#posts-container", initialPosts);
@@ -225,9 +215,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Handle error - you might want to display a message to the user
     })
     .finally(() => {
-      // Hide the loading indicator and show the more-posts button
-      if (loadingIndicator) loadingIndicator.style.display = "none";
-
       if (morePostsButton) {
         if (currentPage * perPage < totalPosts) {
           morePostsButton.style.display = "block";
